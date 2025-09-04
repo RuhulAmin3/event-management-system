@@ -2,9 +2,13 @@
 import React from 'react'
 import CreateEvent from '~/features/create-event'
 
-const CreateEventPage = () => {
+type Props = {
+  params: { id: string }
+}
+
+const CreateEventPage = ({ params }: Props) => {
   return (
-    <CreateEvent/>
+    <CreateEvent params={params} />
   )
 }
 

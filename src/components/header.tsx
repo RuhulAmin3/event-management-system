@@ -17,7 +17,6 @@ const Header = () => {
           {/* Navigation */}
             <nav className="hidden md:flex items-center space-x-8">
             <Link href="/" className="text-foreground hover:text-primary transition-colors font-medium">Home</Link>
-            <Link href="#" className="text-muted-foreground hover:text-primary transition-colors font-medium">Events</Link>
             <Link href="/create-event" className="text-muted-foreground hover:text-primary transition-colors font-medium">Create Event</Link>
             <Link href="#" className="text-muted-foreground hover:text-primary transition-colors font-medium">My Events</Link>
             </nav>
