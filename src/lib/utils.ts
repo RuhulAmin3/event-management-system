@@ -133,3 +133,13 @@ export const getCategoryColor = (category: string) => {
   };
   return colorMap[category] || "bg-gray-100 text-gray-800";
 };
+
+
+export function isValidUrl(string: string): boolean {
+    try {
+        new URL(string);
+        return true;
+    } catch (_) {
+        return false;
+    }
+}

@@ -4,6 +4,7 @@ import { useFormContext } from "react-hook-form";
 import { Card, CardHeader, CardContent, CardTitle } from "~/components/ui/card";
 import { Calendar, MapPin } from "lucide-react";
 import Image from "next/image";
+import { isValidUrl } from "~/lib/utils";
 
 const EventPreview = () => {
     const { watch } = useFormContext();
@@ -18,13 +19,13 @@ const EventPreview = () => {
                 <div className="w-full h-40 bg-muted rounded-lg flex items-center justify-center overflow-hidden mb-4">
                     {image ? (
                         <div className="w-full h-48 relative">
-                            <Image
+                            {image && isValidUrl(image) && <Image
                                 fill
                                 src={image}
                                 alt={title}
                                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                 className="object-cover group-hover:scale-105 transition-transform duration-300"
-                            />
+                            />}
                         </div>) : (
                         <p className="text-muted-foreground">Event image preview</p>
                     )}
