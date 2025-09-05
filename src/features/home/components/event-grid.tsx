@@ -2,7 +2,6 @@
 import { useEffect, useState } from "react";
 import { Button } from "~/components/ui/button";
 import EventCard from "./event-card";
-import { getAllEvents } from "~/lib/local-storage";
 import { Event } from "~/types";
 import { fetchAllEvents } from "~/lib/utils";
 
@@ -12,15 +11,7 @@ const EventsGrid = () => {
   useEffect(() => {
     const loadEvents = async () => {
       const fetchedEvents = await fetchAllEvents();
-      const savedEvents = getAllEvents();
-      const combinedEvents = [...savedEvents];
-
-      fetchedEvents.forEach((fetchedEvent) => {
-        if (!combinedEvents.some((e) => e.id === fetchedEvent.id)) {
-          combinedEvents.push(fetchedEvent);
-        }
-      });
-      setAllEvents(combinedEvents);
+      setAllEvents(fetchedEvents);
     };
 
     loadEvents();

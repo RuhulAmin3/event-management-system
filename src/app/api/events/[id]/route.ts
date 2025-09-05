@@ -1,3 +1,4 @@
+import { revalidateTag } from "next/cache";
 import { NextRequest } from "next/server";
 
 export async function GET(
@@ -61,7 +62,9 @@ export async function PATCH(
     if (!res.ok) {
       const errorText = await res.text();
       console.error("Backend error:", errorText);
-      throw new Error(`Failed to update event: ${res.status} ${res.statusText}`);
+      throw new Error(
+        `Failed to update event: ${res.status} ${res.statusText}`
+      );
     }
 
     // Get the updated event from the response
@@ -70,9 +73,36 @@ export async function PATCH(
     return Response.json(updatedEvent, { status: 200 });
   } catch (err) {
     console.error("Error updating event:", err);
+    return Response.json({ error: "Failed to update event" }, { status: 500 });
+  }
+}
+
+export async function DELETE(
+  _req: NextRequest,
+  { params }: { params: Promise<{ id: string }> }
+) {
+  const { id } = await params;
+  try {
+    const deleteRes = await fetch(`http://localhost:3000/events/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    if (!deleteRes.ok) {
+      return Response.json(
+        { error: "Failed to delete event" },
+        { status: 500 }
+      );
+    }
+    revalidateTag("events");
     return Response.json(
-      { error: "Failed to update event" },
-      { status: 500 }
+      { message: "Event deleted successfully", id },
+      { status: 200 }
     );
+  } catch (err) {
+    console.error("Error deleting event:", err);
+    return Response.json({ error: "Internal server error" }, { status: 500 });
   }
 }

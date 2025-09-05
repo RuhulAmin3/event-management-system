@@ -4,7 +4,7 @@ import { Button } from "~/components/ui/button";
 import { Card, CardContent } from "~/components/ui/card";
 import { Badge } from "~/components/ui/badge";
 import { Calendar, MapPin, Users, Edit, Trash2, Plus } from "lucide-react";
-import {  deleteEvent, getCurrentUser } from "~/lib/local-storage";
+import { getCurrentUser } from "~/lib/local-storage";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -19,7 +19,8 @@ import {
 import Link from "next/link";
 import Image from "next/image";
 import { Event } from "~/types";
-import { fetchAllEvents } from "~/lib/utils";
+import { deleteEvent, fetchAllEvents } from "~/lib/utils";
+import { toast } from "sonner";
 
 const MyEvents = () => {
   const [events, setEvents] = useState<Event[]>([]);
@@ -35,8 +36,13 @@ const MyEvents = () => {
     setEvents(myEvents);
   };
 
-  const handleDeleteEvent = (eventId: string) => {
-    deleteEvent(eventId);
+  const handleDeleteEvent = async (eventId: string) => {
+    const result = await deleteEvent(eventId);
+    if (result) {
+      toast.success("toast deleted successfully", {
+        duration: 3000
+      });
+    }
     loadEvents(); // Refresh the list
   };
 

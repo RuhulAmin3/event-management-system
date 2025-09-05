@@ -104,6 +104,19 @@ export async function handleRsvpToggle(
   return data.event;
 }
 
+export async function deleteEvent(id: string) {
+  const response = await fetch(`http://localhost:3001/api/events/${id}`, {
+    method: "DELETE",
+  });
+
+  if (!response.ok) {
+    throw new Error("Failed to delete events");
+  }
+  const events = await response.json();
+
+  return events;
+}
+
 // utils
 export const getCategoryColor = (category: string) => {
   const colorMap: { [key: string]: string } = {
