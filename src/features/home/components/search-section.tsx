@@ -35,20 +35,6 @@ const SearchSection = () => {
                 </SelectContent>
               </Select>
 
-              {/* Date Filter */}
-              <Select>
-                <SelectTrigger className="w-full lg:w-48 h-12 bg-background">
-                  <SelectValue placeholder="All Dates" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="all">All Dates</SelectItem>
-                  <SelectItem value="today">Today</SelectItem>
-                  <SelectItem value="tomorrow">Tomorrow</SelectItem>
-                  <SelectItem value="week">This Week</SelectItem>
-                  <SelectItem value="month">This Month</SelectItem>
-                </SelectContent>
-              </Select>
-
               {/* Filter Button */}
               <Button size="lg" className="h-12 px-6">
                 <Filter className="w-4 h-4 lg:mr-2" />

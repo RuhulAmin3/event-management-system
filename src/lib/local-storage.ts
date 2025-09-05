@@ -1,17 +1,4 @@
-export interface Event {
-  id: string;
-  title: string;
-  description: string;
-  category: string;
-  date: string;
-  time: string;
-  location: string;
-  image: string;
-  categoryColor: string;
-  createdBy: string;
-  rsvps: string[];
-  createdAt: string;
-}
+import { Event } from "~/types";
 
 const EVENTS_KEY = 'eventhub_events';
 const USER_KEY = 'eventhub_user';
@@ -46,6 +33,7 @@ export const getMyEvents = (): Event[] => {
 
 export const saveEvent = (event: Event): void => {
   const events = getAllEvents();
+  
   const existingIndex = events.findIndex(e => e.id === event.id);
   
   if (existingIndex >= 0) {

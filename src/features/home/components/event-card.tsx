@@ -1,34 +1,16 @@
-
 import { Card, CardContent } from "~/components/ui/card";
 import { Button } from "~/components/ui/button";
 import { Badge } from "~/components/ui/badge";
+import { Event } from "~/types";
+
 import { Calendar, MapPin } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
-interface EventCardProps {
-    id?: string;
-    title: string;
-    description: string;
-    category: string;
-    date: string;
-    time: string;
-    location: string;
-    image: string;
-    categoryColor: string;
-}
+const EventCard = ({ event }: { event: Event }) => {
 
-const EventCard = ({
-    id,
-    title,
-    description,
-    category,
-    date,
-    time,
-    location,
-    image,
-    categoryColor
-}: EventCardProps) => {
+    const { id, title, description, category, date, time, location, image, categoryColor } = event || {};
+    
     return (
         <Card className="overflow-hidden hover:shadow-elegant transition-all duration-300 group cursor-pointer bg-gradient-card border-border/50">
             <div className="relative overflow-hidden">
@@ -72,7 +54,7 @@ const EventCard = ({
                 </div>
 
                 {id ? (
-                    <Link href={`/event/${id}`}>
+                    <Link href={`/event-details/${id}`}>
                         <Button className="w-full" variant="outline">
                             View Details
                         </Button>

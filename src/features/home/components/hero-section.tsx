@@ -9,7 +9,7 @@ const HeroSection = () => {
       <div className="absolute inset-0 bg-black/20"></div>
       <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary-glow/30 rounded-full blur-3xl"></div>
       <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-primary/20 rounded-full blur-3xl"></div>
-      
+
       <div className="container mx-auto px-4 relative z-10">
         {/* Badge */}
         <div className="flex justify-center mb-8">
@@ -28,18 +28,18 @@ const HeroSection = () => {
               Events
             </span>
           </h1>
-          
+
           <p className="text-xl lg:text-2xl text-primary-foreground/80 mb-12 max-w-2xl mx-auto leading-relaxed">
-            Find and create memorable experiences in your community with 
+            Find and create memorable experiences in your community with
             the most intuitive event management platform
           </p>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
-            <Button variant="hero" size="xl" className="flex items-center gap-2">
-              <Plus className="w-5 h-5" />
-              Create Event
-            </Button>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16"> 
+              <Button variant="hero" size="xl" className="flex items-center gap-2">
+                <Plus className="w-5 h-5" />
+                Create Event
+              </Button> 
             <Button variant="hero-outline" size="xl" className="flex items-center gap-2">
               <Play className="w-5 h-5" />
               Watch Demo
@@ -55,7 +55,7 @@ const HeroSection = () => {
               </div>
               <span className="text-primary-foreground/70 text-sm">Active Users</span>
             </div>
-            
+
             <div className="flex flex-col items-center">
               <div className="flex items-center gap-2 text-primary-foreground mb-2">
                 <Calendar className="w-5 h-5 text-stats-accent" />
@@ -63,7 +63,7 @@ const HeroSection = () => {
               </div>
               <span className="text-primary-foreground/70 text-sm">Events Created</span>
             </div>
-            
+
             <div className="flex flex-col items-center">
               <div className="flex items-center gap-2 text-primary-foreground mb-2">
                 <Star className="w-5 h-5 text-stats-accent" />

@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import { Button } from "~/components/ui/button"; 
+import { Button } from "~/components/ui/button";
 import techSummit from "~/assets/tech-summit.jpg";
 import networkingEvent from "~/assets/networking-event.jpg";
 import musicFestival from "~/assets/music-festival.jpg";
@@ -8,9 +8,8 @@ import marathon from "~/assets/marathon.jpg";
 import artExhibition from "~/assets/art-exhibition.jpg";
 import cookingClass from "~/assets/cooking-class.jpg";
 import EventCard from "./event-card";
-import {  getAllEvents } from "~/lib/local-storage";
-import type { Event } from "~/lib/local-storage";
-
+import { getAllEvents } from "~/lib/local-storage";
+import { Event } from "~/types";
 
 const sampleEvents: Event[] = [
   {
@@ -32,7 +31,7 @@ const sampleEvents: Event[] = [
     title: "Business Networking Night",
     description: "Connect with professionals and expand your business network.",
     category: "Business",
-    date: "Dec 18, 2024", 
+    date: "Dec 18, 2024",
     time: "6:00 PM",
     location: "New York, NY",
     image: networkingEvent,
@@ -47,7 +46,7 @@ const sampleEvents: Event[] = [
     description: "Experience amazing live performances from top artists.",
     category: "Entertainment",
     date: "Dec 20, 2024",
-    time: "2:00 PM", 
+    time: "2:00 PM",
     location: "Los Angeles, CA",
     image: musicFestival,
     categoryColor: "bg-purple-100 text-purple-800",
@@ -75,7 +74,7 @@ const sampleEvents: Event[] = [
     description: "Explore contemporary artworks from emerging artists.",
     category: "Art",
     date: "Dec 25, 2024",
-    time: "10:00 AM", 
+    time: "10:00 AM",
     location: "Seattle, WA",
     image: artExhibition,
     categoryColor: "bg-pink-100 text-pink-800",
@@ -114,22 +113,14 @@ const EventsGrid = () => {
     <section className="py-16 bg-background">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {allEvents.map((event) => (
+          {allEvents.map((event: Event) => (
             <EventCard
               key={event.id}
-              id={event.id}
-              title={event.title}
-              description={event.description}
-              category={event.category}
-              date={event.date}
-              time={event.time}
-              location={event.location}
-              image={event.image}
-              categoryColor={event.categoryColor}
+              event={event}
             />
           ))}
         </div>
-        
+
         <div className="text-center mt-12">
           <Button variant="outline" size="lg">
             Load More Events

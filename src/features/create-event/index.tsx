@@ -14,12 +14,7 @@ import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
-type Props = {
-    params: { id: string }
-}
-
-const CreateEvent = ({ params }: Props) => {
-    const { id } = params;
+const CreateEvent = ({id}:{id?:string}) => {
     const router = useRouter();
     const { toast } = useToast();
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -175,8 +170,7 @@ const CreateEvent = ({ params }: Props) => {
 
     return (
         <div className="min-h-screen bg-background">
-
-            <main className="container mx-auto px-4 py-8">
+            <div className="container mx-auto px-4 py-8">
                 {/* Back Button */}
                 <Link href="/" className="inline-flex items-center text-muted-foreground hover:text-primary transition-colors mb-6">
                     <ArrowLeft className="w-4 h-4 mr-2" />
@@ -411,7 +405,7 @@ const CreateEvent = ({ params }: Props) => {
                         ))}
                     </div>
                 </div>
-            </main>
+            </div>
 
         </div>
     );

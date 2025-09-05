@@ -1,18 +1,18 @@
+import { Fragment } from 'react'
 
-import React from 'react'
-import HeroSection from './components/hero-section'
-import SearchSection from './components/search-section'
-import EventsGrid from './components/event-grid'
 import FeaturesSection from './components/feature-section'
+import SearchSection from './components/search-section'
+import HeroSection from './components/hero-section'
+import EventsGrid from './components/event-grid'
 
 const Home = () => {
   return (
-    <>
+    <Fragment>
       <HeroSection />
       <SearchSection />
       <EventsGrid />
       <FeaturesSection />
-    </>
+    </Fragment>
   )
 }
 
