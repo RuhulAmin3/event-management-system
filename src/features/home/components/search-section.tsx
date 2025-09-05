@@ -25,7 +25,7 @@ const SearchSection = () => {
                 <SelectTrigger className="w-full lg:w-48 h-12 bg-background">
                   <SelectValue placeholder="All Categories" />
                 </SelectTrigger>
-                 <SelectCategory/>
+                 <SelectCategory label="All Categories" value="all"/>
               </Select>
 
               {/* Filter Button */}

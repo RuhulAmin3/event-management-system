@@ -1,3 +1,4 @@
+"use client";
 import { Event } from "~/types";
 
 const EVENTS_KEY = 'eventhub_events';

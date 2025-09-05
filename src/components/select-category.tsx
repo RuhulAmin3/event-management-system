@@ -1,8 +1,9 @@
 import { SelectContent, SelectItem } from "~/components/ui/select";
-const SelectCategory = ({ label = "All Categories", value = "all" }: { label?: string, value?: string }) => {
+
+const SelectCategory = ({ label, value }: { label?: string, value?: string }) => {
   return (
     <SelectContent>
-      <SelectItem value={value}>{label}</SelectItem>
+      {label && value && <SelectItem value={value}>{label}</SelectItem>}
       <SelectItem value="technology">Technology</SelectItem>
       <SelectItem value="business">Business</SelectItem>
       <SelectItem value="entertainment">Entertainment</SelectItem>

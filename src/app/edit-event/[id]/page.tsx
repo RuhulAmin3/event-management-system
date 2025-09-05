@@ -1,12 +1,10 @@
-
-import React from 'react'
 import CreateEvent from '~/features/create-event';
 
 type Props = {
-    params: { id: string }
+    params: Promise<{ id: string }>
 }
-const EditEventPage = ({ params }: Props) => {
-    const id = params.id;
+const EditEventPage = async ({ params }: Props) => {
+    const { id } = await params;
     return (
         <CreateEvent id={id} />
     )

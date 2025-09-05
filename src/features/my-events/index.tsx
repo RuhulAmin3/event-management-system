@@ -5,7 +5,6 @@ import { Card, CardContent } from "~/components/ui/card";
 import { Badge } from "~/components/ui/badge";
 import { Calendar, MapPin, Users, Edit, Trash2, Plus } from "lucide-react";
 import { getMyEvents, deleteEvent } from "~/lib/local-storage";
-import type { Event } from "~/lib/local-storage";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -19,6 +18,7 @@ import {
 } from "~/components/ui/alert-dialog";
 import Link from "next/link";
 import Image from "next/image";
+import { Event } from "~/types";
 
 const MyEvents = () => {
   const [events, setEvents] = useState<Event[]>([]);
@@ -36,9 +36,7 @@ const MyEvents = () => {
     deleteEvent(eventId);
     loadEvents(); // Refresh the list
   };
-
-  console.log("events", events);
-
+  
   return (
     <div className="min-h-screen bg-background">
 

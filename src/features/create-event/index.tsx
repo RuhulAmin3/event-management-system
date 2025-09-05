@@ -1,20 +1,23 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "~/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
 import { Input } from "~/components/ui/input";
 import { Label } from "~/components/ui/label";
 import { Textarea } from "~/components/ui/textarea";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "~/components/ui/select";
-import { ArrowLeft, Calendar, Clock, MapPin, Tag, Users, Target, Clock4, MapPin as Location } from "lucide-react";
-import { useToast } from "~/hooks/use-toast";
+import { Select, SelectTrigger, SelectValue } from "~/components/ui/select";
+import { ArrowLeft, Calendar, MapPin, Tag, Users, Target, Clock4, MapPin as Location } from "lucide-react";
 import { saveEvent, getCurrentUser, getEventById } from "~/lib/local-storage";
-import { useEffect } from "react";
+import { useToast } from "~/hooks/use-toast";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { Event } from "~/types";
+import DatePicker from "~/components/ui/date-picker";
+import TimePicker from "~/components/ui/time-picker";
+import SelectCategory from "~/components/select-category";
 
-const CreateEvent = ({id}:{id?:string}) => {
+const CreateEvent = ({ id }: { id?: string }) => {
     const router = useRouter();
     const { toast } = useToast();
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -68,7 +71,6 @@ const CreateEvent = ({id}:{id?:string}) => {
 
     const handleSubmit = async (isDraft = false) => {
         const errors = validateForm();
-
         if (errors.length > 0 && !isDraft) {
             toast({
                 title: "Please fill in all required fields",
@@ -91,7 +93,7 @@ const CreateEvent = ({id}:{id?:string}) => {
                 date: eventData.date,
                 time: eventData.time,
                 location: eventData.location,
-                image: getRandomEventImage(),
+                image: "http://localhost3000/example.image.png",
                 categoryColor: getCategoryColor(eventData.category),
                 createdBy: getCurrentUser(),
                 rsvps: isEditing ? (getEventById(id!)?.rsvps || []) : [],
@@ -106,7 +108,7 @@ const CreateEvent = ({id}:{id?:string}) => {
             });
 
             router.push('/my-events');
-        } catch (error) {
+        } catch (err) {
             toast({
                 title: "Error",
                 description: "There was an error saving your event. Please try again.",
@@ -117,17 +119,7 @@ const CreateEvent = ({id}:{id?:string}) => {
         }
     };
 
-    const getRandomEventImage = () => {
-        const images = [
-            '/src/assets/tech-summit.jpg',
-            '/src/assets/networking-event.jpg',
-            '/src/assets/music-festival.jpg',
-            '/src/assets/marathon.jpg',
-            '/src/assets/art-exhibition.jpg',
-            '/src/assets/cooking-class.jpg'
-        ];
-        return images[Math.floor(Math.random() * images.length)];
-    };
+     
 
     const getCategoryColor = (category: string) => {
         const colorMap: { [key: string]: string } = {
@@ -195,7 +187,7 @@ const CreateEvent = ({id}:{id?:string}) => {
                     <div className="lg:col-span-2 space-y-6">
                         {/* Event Title */}
                         <div className="space-y-2">
-                            <Label htmlFor="title" className="text-sm font-medium">
+                            <Label htmlFor="title" className="text-sm font-medium block mb-2">
                                 Event Title <span className="text-destructive">*</span>
                             </Label>
                             <Input
@@ -210,7 +202,7 @@ const CreateEvent = ({id}:{id?:string}) => {
 
                         {/* Event Description */}
                         <div className="space-y-2">
-                            <Label htmlFor="description" className="text-sm font-medium">
+                            <Label htmlFor="description" className="text-sm font-medium block mb-2">
                                 Event Description <span className="text-destructive">*</span>
                             </Label>
                             <Textarea
@@ -225,42 +217,18 @@ const CreateEvent = ({id}:{id?:string}) => {
 
                         {/* Date and Time */}
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div className="space-y-2">
-                                <Label htmlFor="date" className="text-sm font-medium">
-                                    Event Date <span className="text-destructive">*</span>
-                                </Label>
-                                <div className="relative">
-                                    <Calendar className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-                                    <Input
-                                        id="date"
-                                        type="date"
-                                        value={eventData.date}
-                                        onChange={(e) => setEventData({ ...eventData, date: e.target.value })}
-                                        className="pl-10 h-12"
-                                    />
-                                </div>
+                            <div className="space-y-2"> 
+                                <DatePicker />
                             </div>
 
                             <div className="space-y-2">
-                                <Label htmlFor="time" className="text-sm font-medium">
-                                    Start Time <span className="text-destructive">*</span>
-                                </Label>
-                                <div className="relative">
-                                    <Clock className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-                                    <Input
-                                        id="time"
-                                        type="time"
-                                        value={eventData.time}
-                                        onChange={(e) => setEventData({ ...eventData, time: e.target.value })}
-                                        className="pl-10 h-12"
-                                    />
-                                </div>
+                                <TimePicker />
                             </div>
                         </div>
 
                         {/* Location */}
                         <div className="space-y-2">
-                            <Label htmlFor="location" className="text-sm font-medium">
+                            <Label htmlFor="location" className="text-sm font-medium block mb-2">
                                 Location <span className="text-destructive">*</span>
                             </Label>
                             <div className="relative">
@@ -278,7 +246,7 @@ const CreateEvent = ({id}:{id?:string}) => {
 
                         {/* Category */}
                         <div className="space-y-2">
-                            <Label htmlFor="category" className="text-sm font-medium">
+                            <Label htmlFor="category" className="text-sm font-medium block mb-2">
                                 Category <span className="text-destructive">*</span>
                             </Label>
                             <Select value={eventData.category} onValueChange={(value) => setEventData({ ...eventData, category: value })}>
@@ -288,18 +256,7 @@ const CreateEvent = ({id}:{id?:string}) => {
                                         <SelectValue placeholder="Select event category" />
                                     </div>
                                 </SelectTrigger>
-                                <SelectContent>
-                                    <SelectItem value="conference">Conference</SelectItem>
-                                    <SelectItem value="workshop">Workshop</SelectItem>
-                                    <SelectItem value="networking">Networking</SelectItem>
-                                    <SelectItem value="social">Social</SelectItem>
-                                    <SelectItem value="sports">Sports</SelectItem>
-                                    <SelectItem value="arts">Arts & Culture</SelectItem>
-                                    <SelectItem value="food">Food & Dining</SelectItem>
-                                    <SelectItem value="music">Music</SelectItem>
-                                    <SelectItem value="tech">Technology</SelectItem>
-                                    <SelectItem value="business">Business</SelectItem>
-                                </SelectContent>
+                                <SelectCategory/>
                             </Select>
                         </div>
 
@@ -406,7 +363,6 @@ const CreateEvent = ({id}:{id?:string}) => {
                     </div>
                 </div>
             </div>
-
         </div>
     );
 };

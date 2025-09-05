@@ -1,4 +1,4 @@
-import events from "~/data/data.json";
+import {events} from "~/../db.json";
 
 export const dynamic = 'force-static';
 

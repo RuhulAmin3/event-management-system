@@ -1,70 +1,44 @@
 "use client";
-import { useState, useEffect } from "react";
+
+import { useState } from "react";
 import { Button } from "~/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
 import { Badge } from "~/components/ui/badge";
 import { ArrowLeft, Calendar, Clock, MapPin, Users, Share2, Heart } from "lucide-react";
 
-import { getEventById, rsvpToEvent, unRsvpFromEvent, isUserRsvped } from "~/lib/local-storage";
+import { rsvpToEvent, unRsvpFromEvent } from "~/lib/local-storage";
 import Link from "next/link";
 import Image from "next/image";
 import { Event } from "~/types";
+import { notFound } from "next/navigation";
 
-const EventDetail = ({ id }: {id:string}) => {
-  console.log("id", id);
-  const [event, setEvent] = useState<Event | null>(null);
+const EventDetail = ({ event }: { event: Event }) => {
   const [isRsvped, setIsRsvped] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    if (id) {
-      const foundEvent = getEventById(id);
-      setEvent(foundEvent);
-      if (foundEvent) {
-        setIsRsvped(isUserRsvped(id));
-      }
-    }
-  }, [id]);
-
   const handleRsvp = async () => {
-    if (!id) return;
+    if (!event.id) return;
 
     setLoading(true);
     try {
       if (isRsvped) {
-        unRsvpFromEvent(id);
+        unRsvpFromEvent(event.id);
         setIsRsvped(false);
       } else {
-        rsvpToEvent(id);
+        rsvpToEvent(event.id);
         setIsRsvped(true);
       }
-      // Refresh event data to get updated RSVP count
-      const updatedEvent = getEventById(id);
-      setEvent(updatedEvent);
     } finally {
       setLoading(false);
     }
   };
 
   if (!event) {
-    return (
-      <div className="min-h-screen bg-background">
-        <div className="container mx-auto px-4 py-8">
-          <div className="text-center">
-            <h1 className="text-2xl font-bold mb-4">Event Not Found</h1>
-            <p className="text-muted-foreground mb-6">The event you&apos;re looking for doesn&apos;t exist.</p>
-            <Link href="/">
-              <Button>Back to Events</Button>
-            </Link>
-          </div>
-        </div>
-      </div>
-    );
+    return notFound();
   }
 
   return (
     <div className="min-h-screen bg-background">
-
       <div className="container mx-auto px-4 py-8">
         {/* Back Button */}
         <Link href="/" className="inline-flex items-center text-muted-foreground hover:text-primary transition-colors mb-6">

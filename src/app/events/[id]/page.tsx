@@ -1,17 +1,18 @@
-
-import React from 'react'
-import EventDetails from '~/features/event-details'
+import { notFound } from 'next/navigation';
+import EventDetail from '~/features/event-details';
+import { getSingleEvent } from '~/lib/utils';
+import { Event } from '~/types';
 
 type Props = {
-    params: { id: string }
+    params: Promise<{ id: string }>
 }
-
-const EventDetailsPage = ({ params }: Props) => {
-    console.log("params id", params.id);
-
+const EventDetailsPage = async ({ params }: Props) => {
+    const { id } = await params;
+    const event: Event = await getSingleEvent(id);
+    if (!event) return notFound();
     return (
-        <EventDetails id={params.id} />
+        <EventDetail event={event} />
     )
 }
 
-export default EventDetailsPage
+export default EventDetailsPage;

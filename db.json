@@ -1,0 +1,88 @@
+{
+  "events": [
+    {
+      "id": "event_1",
+      "title": "Tech Innovation Summit",
+      "description": "Join industry leaders discussing the future of technology and innovation.",
+      "category": "Technology",
+      "date": "Dec 15, 2024",
+      "time": "9:00 AM",
+      "location": "San Francisco, CA",
+      "image": "https://ik.imagekit.io/cedope9wx/assets/tech-summit.jpg?updatedAt=1757034748675",
+      "categoryColor": "bg-blue-100 text-blue-800",
+      "createdBy": "sample_organizer",
+      "rsvps": [],
+      "createdAt": "2024-04-05T10:00:00.000Z"
+    },
+    {
+      "id": "event_2",
+      "title": "Business Networking Night",
+      "description": "Connect with professionals and expand your business network.",
+      "category": "Business",
+      "date": "Dec 18, 2024",
+      "time": "6:00 PM",
+      "location": "New York, NY",
+      "image": "https://ik.imagekit.io/cedope9wx/assets/networking-event.jpg?updatedAt=1757034748757",
+      "categoryColor": "bg-green-100 text-green-800",
+      "createdBy": "sample_organizer",
+      "rsvps": [],
+      "createdAt": "2024-04-05T10:00:00.000Z"
+    },
+    {
+      "id": "event_3",
+      "title": "Summer Music Festival",
+      "description": "Experience amazing live performances from top artists.",
+      "category": "Entertainment",
+      "date": "Dec 20, 2024",
+      "time": "2:00 PM",
+      "location": "Los Angeles, CA",
+      "image": "https://ik.imagekit.io/cedope9wx/assets/music-festival.jpg?updatedAt=1757034748791",
+      "categoryColor": "bg-purple-100 text-purple-800",
+      "createdBy": "sample_organizer",
+      "rsvps": [],
+      "createdAt": "2024-04-05T10:00:00.000Z"
+    },
+    {
+      "id": "event_4",
+      "title": "City Marathon 2024",
+      "description": "Join thousands of runners in this annual city marathon event.",
+      "category": "Sports",
+      "date": "Dec 22, 2024",
+      "time": "7:00 AM",
+      "location": "Chicago, IL",
+      "image": "https://ik.imagekit.io/cedope9wx/assets/marathon.jpg?updatedAt=1757034748852",
+      "categoryColor": "bg-orange-100 text-orange-800",
+      "createdBy": "sample_organizer",
+      "rsvps": [],
+      "createdAt": "2024-04-05T10:00:00.000Z"
+    },
+    {
+      "id": "event_5",
+      "title": "Modern Art Exhibition",
+      "description": "Explore contemporary artworks from emerging artists.",
+      "category": "Art",
+      "date": "Dec 25, 2024",
+      "time": "10:00 AM",
+      "location": "Seattle, WA",
+      "image": "https://ik.imagekit.io/cedope9wx/assets/art-exhibition.jpg?updatedAt=1757034748782",
+      "categoryColor": "bg-pink-100 text-pink-800",
+      "createdBy": "sample_organizer",
+      "rsvps": [],
+      "createdAt": "2024-04-05T10:00:00.000Z"
+    },
+    {
+      "id": "event_6",
+      "title": "Culinary Masterclass",
+      "description": "Learn advanced cooking techniques from professional chefs.",
+      "category": "Workshop",
+      "date": "Dec 28, 2024",
+      "time": "3:00 PM",
+      "location": "Miami, FL",
+      "image": "https://ik.imagekit.io/cedope9wx/assets/cooking-class.jpg?updatedAt=1757034748787",
+      "categoryColor": "bg-yellow-100 text-yellow-800",
+      "createdBy": "sample_organizer",
+      "rsvps": [],
+      "createdAt": "2024-04-05T10:00:00.000Z"
+    }
+  ]
+}
