@@ -6,9 +6,9 @@ import { Badge } from "~/components/ui/badge";
 import { ArrowLeft, Calendar, Clock, MapPin, Users, Share2, Heart } from "lucide-react";
 
 import { getEventById, rsvpToEvent, unRsvpFromEvent, isUserRsvped } from "~/lib/local-storage";
-import type { Event } from "~/lib/local-storage";
 import Link from "next/link";
 import Image from "next/image";
+import { Event } from "~/types";
 
 const EventDetail = ({ id }: {id:string}) => {
   console.log("id", id);

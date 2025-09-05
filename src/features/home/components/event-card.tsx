@@ -10,17 +10,19 @@ import Link from "next/link";
 const EventCard = ({ event }: { event: Event }) => {
 
     const { id, title, description, category, date, time, location, image, categoryColor } = event || {};
-    
+
     return (
         <Card className="overflow-hidden hover:shadow-elegant transition-all duration-300 group cursor-pointer bg-gradient-card border-border/50">
             <div className="relative overflow-hidden">
-                <Image
-                    height={192}
-                    width={384}
-                    src={image}
-                    alt={title}
-                    className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-                />
+                <div className="w-full h-48 relative">
+                    <Image
+                        fill
+                        src={image}
+                        alt={title}
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        className="object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                </div>
                 <div className="absolute top-4 left-4">
                     <Badge
                         variant="secondary"
@@ -54,7 +56,7 @@ const EventCard = ({ event }: { event: Event }) => {
                 </div>
 
                 {id ? (
-                    <Link href={`/event-details/${id}`}>
+                    <Link href={`/events/${id}`}>
                         <Button className="w-full" variant="outline">
                             View Details
                         </Button>

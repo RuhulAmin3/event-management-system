@@ -132,7 +132,7 @@ const MyEvents = () => {
                   </div>
 
                   <div className="flex space-x-2">
-                    <Link href={`/event-details/${event.id}`} className="flex-1">
+                    <Link href={`/events/${event.id}`} className="flex-1">
                       <Button variant="outline" className="w-full">
                         View Details
                       </Button>
