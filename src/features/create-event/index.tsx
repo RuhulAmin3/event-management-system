@@ -22,10 +22,7 @@ const CreateEvent = () => {
                         Share your event with the community and bring people together
                     </p>
                 </div>
-
-                {/* <div className="grid grid-cols-1 lg:grid-cols-3 gap-8"> */}
                     <EventForm/>
-                {/* </div> */}
             </div>
         </div>
     );

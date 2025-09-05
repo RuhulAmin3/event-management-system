@@ -4,7 +4,7 @@ import { Button } from "~/components/ui/button";
 import { Card, CardContent } from "~/components/ui/card";
 import { Badge } from "~/components/ui/badge";
 import { Calendar, MapPin, Users, Edit, Trash2, Plus } from "lucide-react";
-import { getMyEvents, deleteEvent } from "~/lib/local-storage";
+import {  deleteEvent, getCurrentUser } from "~/lib/local-storage";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -19,6 +19,7 @@ import {
 import Link from "next/link";
 import Image from "next/image";
 import { Event } from "~/types";
+import { fetchAllEvents } from "~/lib/utils";
 
 const MyEvents = () => {
   const [events, setEvents] = useState<Event[]>([]);
@@ -27,8 +28,10 @@ const MyEvents = () => {
     loadEvents();
   }, []);
 
-  const loadEvents = () => {
-    const myEvents = getMyEvents();
+  const loadEvents = async () => {
+    const user = getCurrentUser();
+
+    const myEvents = await fetchAllEvents([{ name: "createdBy", value: user }])
     setEvents(myEvents);
   };
 
@@ -36,7 +39,7 @@ const MyEvents = () => {
     deleteEvent(eventId);
     loadEvents(); // Refresh the list
   };
-  
+
   return (
     <div className="min-h-screen bg-background">
 
@@ -117,7 +120,7 @@ const MyEvents = () => {
                   <div className="space-y-2 mb-4">
                     <div className="flex items-center text-sm text-muted-foreground">
                       <Calendar className="w-4 h-4 mr-2 text-primary" />
-                      {event.date} • {event.time}
+                      {new Date(event.date).toLocaleDateString()} • {event.time}
                     </div>
                     <div className="flex items-center text-sm text-muted-foreground">
                       <MapPin className="w-4 h-4 mr-2 text-primary" />

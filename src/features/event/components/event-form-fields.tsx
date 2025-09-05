@@ -19,9 +19,7 @@ const EventFormFields = () => {
         setValue,
         formState: { errors },
     } = useFormContext<EventFormValues>();
-
-    console.log("err", errors);
-
+    
     return (
         <div className="space-y-6">
             {/* Title */}

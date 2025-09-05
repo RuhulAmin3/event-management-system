@@ -28,7 +28,7 @@ export const getEventById = (id: string): Event | null => {
 
 export const getMyEvents = (): Event[] => {
   const events = getAllEvents();
-  const currentUser = getCurrentUser();
+  const currentUser = getCurrentUser(); 
   return events.filter(event => event.createdBy === currentUser);
 };
 

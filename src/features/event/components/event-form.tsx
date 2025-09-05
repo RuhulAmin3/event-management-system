@@ -11,6 +11,9 @@ import EventPreview from "./event-preview";
 import EventTips from "./event-tips";
 import { toast } from "sonner";
 import { EventFormValues, validationSchema } from "../schema";
+import { Event } from "~/types";
+import { createEvent, getCategoryColor, updateEvent } from "~/lib/utils";
+import { getCurrentUser } from "~/lib/local-storage";
 
 const EventForm = ({ id, defaultValues }: { id?: string; defaultValues?: EventFormValues }) => {
   const router = useRouter();
@@ -34,10 +37,29 @@ const EventForm = ({ id, defaultValues }: { id?: string; defaultValues?: EventFo
     formState: { isSubmitting },
   } = methods;
 
-  // Correctly typed onSubmit
   const onSubmit: SubmitHandler<EventFormValues> = async (data) => {
     try {
-      console.log("Event data:", data);
+      const eventId = id || `event_${Date.now()}_${Math.random().toString(36).substring(2, 9)}`;
+      const event: Event = {
+        id: eventId,
+        title: data.title,
+        description: data.description,
+        category: data.category,
+        date: data.date,
+        time: data.time,
+        location: data.location,
+        image: data.image,
+        categoryColor: getCategoryColor(data.category),
+        createdBy: getCurrentUser(),
+        rsvps: [],
+        createdAt: new Date().toISOString()
+      };
+
+      if (id) {
+        await updateEvent({ id, event })
+      } else {
+        await createEvent(event);
+      }
 
       toast.success(id ? "Event updated successfully" : "Event created successfully", {
         position: "bottom-right",
