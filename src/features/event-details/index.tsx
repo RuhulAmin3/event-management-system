@@ -10,7 +10,6 @@ import { rsvpToEvent, unRsvpFromEvent } from "~/lib/local-storage";
 import Link from "next/link";
 import Image from "next/image";
 import { Event } from "~/types";
-import { notFound } from "next/navigation";
 
 const EventDetail = ({ event }: { event: Event }) => {
   const [isRsvped, setIsRsvped] = useState(false);
@@ -32,11 +31,6 @@ const EventDetail = ({ event }: { event: Event }) => {
       setLoading(false);
     }
   };
-
-  if (!event) {
-    return notFound();
-  }
-
   return (
     <div className="min-h-screen bg-background">
       <div className="container mx-auto px-4 py-8">
