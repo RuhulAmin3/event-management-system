@@ -1,7 +1,8 @@
 import { Input } from "~/components/ui/input";
-import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "~/components/ui/select";
+import { Select, SelectTrigger, SelectValue } from "~/components/ui/select";
 import { Search, Filter } from "lucide-react";
 import { Button } from "~/components/ui/button";
+import SelectCategory from "~/components/select-category";
 
 const SearchSection = () => {
   return (
@@ -24,15 +25,7 @@ const SearchSection = () => {
                 <SelectTrigger className="w-full lg:w-48 h-12 bg-background">
                   <SelectValue placeholder="All Categories" />
                 </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="all">All Categories</SelectItem>
-                  <SelectItem value="technology">Technology</SelectItem>
-                  <SelectItem value="business">Business</SelectItem>
-                  <SelectItem value="entertainment">Entertainment</SelectItem>
-                  <SelectItem value="sports">Sports</SelectItem>
-                  <SelectItem value="art">Art</SelectItem>
-                  <SelectItem value="workshop">Workshop</SelectItem>
-                </SelectContent>
+                 <SelectCategory/>
               </Select>
 
               {/* Filter Button */}

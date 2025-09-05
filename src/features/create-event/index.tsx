@@ -9,10 +9,10 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "~
 import { ArrowLeft, Calendar, Clock, MapPin, Tag, Users, Target, Clock4, MapPin as Location } from "lucide-react";
 import { useToast } from "~/hooks/use-toast";
 import { saveEvent, getCurrentUser, getEventById } from "~/lib/local-storage";
-import type { Event } from "~/lib/local-storage";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { Event } from "~/types";
 
 const CreateEvent = ({id}:{id?:string}) => {
     const router = useRouter();

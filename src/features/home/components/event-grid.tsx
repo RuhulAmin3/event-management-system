@@ -11,27 +11,19 @@ const EventsGrid = () => {
 
   useEffect(() => {
     const loadEvents = async () => {
-      // Step 1: Fetch events from API (or wherever)
       const fetchedEvents = await fetchAllEvents();
-
-      // Step 2: Get saved events from localStorage
       const savedEvents = getAllEvents();
-
-      // Step 3: Combine logic — example: saved + fetched + sample (avoid dups)
       const combinedEvents = [...savedEvents];
 
-      // Add fetched events if not already present
       fetchedEvents.forEach((fetchedEvent) => {
         if (!combinedEvents.some((e) => e.id === fetchedEvent.id)) {
           combinedEvents.push(fetchedEvent);
         }
       });
-
-      // Step 4: Update state
       setAllEvents(combinedEvents);
     };
 
-    loadEvents(); // 🔥 Call the async function
+    loadEvents();
   }, []);
 
   return (

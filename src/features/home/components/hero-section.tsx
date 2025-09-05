@@ -1,4 +1,5 @@
 import { Plus, Play, Users, Calendar, Star } from "lucide-react";
+import Link from "next/link";
 import { Badge } from "~/components/ui/badge";
 import { Button } from "~/components/ui/button";
 
@@ -35,11 +36,11 @@ const HeroSection = () => {
           </p>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16"> 
-              <Button variant="hero" size="xl" className="flex items-center gap-2">
-                <Plus className="w-5 h-5" />
-                Create Event
-              </Button> 
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
+            <Button variant="hero" size="xl" className="flex items-center gap-2">
+              <Plus className="w-5 h-5" />
+              <Link href="/create-event">Create Event</Link>
+            </Button>
             <Button variant="hero-outline" size="xl" className="flex items-center gap-2">
               <Play className="w-5 h-5" />
               Watch Demo
