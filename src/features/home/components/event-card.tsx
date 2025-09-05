@@ -32,7 +32,7 @@ const EventCard = ({ event }: { event: Event }) => {
                     </Badge>
                 </div>
                 <div className="absolute top-4 right-4 text-xs text-primary-foreground bg-black/20 backdrop-blur-sm px-2 py-1 rounded">
-                    {new Date(date).toLocaleDateString()}
+                    {date}
                 </div>
             </div>
 
