@@ -1,5 +1,3 @@
-
-import React from 'react'
 import MyEvents from '~/features/my-events'
 
 const MyEventsPage = () => {

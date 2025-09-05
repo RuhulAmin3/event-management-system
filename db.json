@@ -111,7 +111,9 @@
       "image": "https://ik.imagekit.io/cedope9wx/assets/art-exhibition.jpg?updatedAt=1757034748782",
       "categoryColor": "bg-gray-100 text-gray-800",
       "createdBy": "user_1757062370402",
-      "rsvps": [],
+      "rsvps": [
+        "user_1757062370402"
+      ],
       "createdAt": "2025-09-05T16:04:19.381Z"
     },
     {

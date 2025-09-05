@@ -30,7 +30,6 @@ const EventDetail = ({ event }: { event: Event }) => {
       const newEvent = await handleRsvpToggle(event.id, userId);
       setIsRsvps(newEvent.rsvps.includes(userId));
     } catch (err) {
-      console.error("RSVP failed:", err);
     } finally {
       setIsLoading(false);
     }

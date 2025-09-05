@@ -8,8 +8,7 @@ import { toast } from "sonner";
 
 import { Event } from "~/types";
 import { getCurrentUser } from "~/lib/local-storage";
-import { fetchAllEvents, deleteEvent } from "~/lib/utils";
-import EventCard from "../home/components/event-card";
+import { fetchAllEvents, deleteEvent } from "~/lib/utils"; 
 import EventStats from "./components/event-stats";
 import EmptyState from "./components/empty-state";
 import MyEventCard from "./components/my-event-card";
