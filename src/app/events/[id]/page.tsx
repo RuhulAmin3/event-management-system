@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation';
+import { getSingleEvent } from '~/app/action';
 import EventDetail from '~/features/event-details';
-import { getSingleEvent } from '~/lib/utils';
 import { Event } from '~/types';
 
 type Props = {

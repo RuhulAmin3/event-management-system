@@ -152,7 +152,12 @@
       "location": "Comilla, Bangladesh",
       "image": "https://ik.imagekit.io/cedope9wx/assets/marathon.jpg?updatedAt=1757034748852",
       "categoryColor": "bg-gray-100 text-gray-800",
-      "rsvps": [],
+      "rsvps": [
+        {},
+        {},
+        {},
+        {}
+      ],
       "createdAt": "2025-09-06T05:56:33.398Z",
       "createdBy": "user_1757137995393"
     },

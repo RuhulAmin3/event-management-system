@@ -1,8 +1,8 @@
 import { notFound } from 'next/navigation';
+import { getSingleEvent } from '~/app/action';
 import BackButton from '~/components/back-button';
 import EventForm from '~/features/event/components/event-form';
 import { EventFormValues } from '~/features/event/schema';
-import { getSingleEvent } from '~/lib/utils';
 
 type Props = {
     params: Promise<{ id: string }>

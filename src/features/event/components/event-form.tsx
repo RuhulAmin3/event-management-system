@@ -40,7 +40,7 @@ const EventForm = ({ id, defaultValues }: { id?: string; defaultValues?: EventFo
   const onSubmit: SubmitHandler<EventFormValues> = async (data) => {
     try {
       const eventId = id || `event_${Date.now()}_${Math.random().toString(36).substring(2, 9)}`;
-      const event:Omit<Event, "createdBy"> = {
+      const event: Omit<Event, "createdBy"> = {
         id: eventId,
         title: data.title,
         description: data.description,

@@ -125,19 +125,16 @@ export async function updateEvent({
   return await response.json();
 }
 
-export async function handleRsvpToggle(
-  eventId: string,
-  userId: string
-): Promise<Event> {
+export async function handleRsvpToggle(eventId: string): Promise<Event> {
   const baseUrl = getBaseUrl();
   const url = `${baseUrl}/events/${eventId}/rsvp`;
-
+  const userId = getCurrentUser();
   const response = await fetch(url, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ userId }),
+    body: JSON.stringify({  userId }),
   });
 
   if (!response.ok) {

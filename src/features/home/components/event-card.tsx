@@ -16,6 +16,8 @@ const EventCard = ({ event }: { event: Event }) => {
             <div className="relative overflow-hidden">
                 <div className="w-full h-48 relative">
                     <Image
+                        // placeholder="blur"
+                        priority
                         fill
                         src={image}
                         alt={title}
