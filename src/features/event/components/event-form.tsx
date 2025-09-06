@@ -1,15 +1,19 @@
 "use client";
-
-import { useRouter } from "next/navigation";
-import { Button } from "~/components/ui/button";
-
+/**
+ * External Imports
+*/
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
+/**
+ * Internal Imports
+*/
 import EventFormFields from "./event-form-fields";
 import EventPreview from "./event-preview";
+import { Button } from "~/components/ui/button";
 import EventTips from "./event-tips";
-import { toast } from "sonner";
 import { EventFormValues, validationSchema } from "../schema";
 import { Event } from "~/types";
 import { getCategoryColor } from "~/lib/utils";
@@ -57,7 +61,8 @@ const EventForm = ({ id, defaultValues }: { id?: string; defaultValues?: EventFo
       if (id) {
         await updateEvent({ id, event })
       } else {
-        await createEvent(event);
+        const res = await createEvent(event);
+        console.log("res", res);
       }
 
       toast.success(id ? "Event updated successfully" : "Event created successfully", {
@@ -83,7 +88,7 @@ const EventForm = ({ id, defaultValues }: { id?: string; defaultValues?: EventFo
           <EventFormFields />
 
           <div className="flex gap-4 pt-6">
-            <Button variant="outline" type="button" disabled={isSubmitting}>
+            <Button variant="outline" type="button" disabled={isSubmitting} onClick={() => toast.warning("Just for demo purpose!!!")}>
               Save as Draft
             </Button>
             <Button type="submit" className="flex-1" disabled={isSubmitting}>

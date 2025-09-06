@@ -1,11 +1,6 @@
 import { Event } from "~/types";
 import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
-
-import {
-    Calendar,
-    Clock,
-    MapPin,
-} from "lucide-react";
+import { Calendar, Clock, MapPin } from "lucide-react";
 const EventDescription = ({ event }: { event: Event }) => (
     <Card>
         <CardHeader>

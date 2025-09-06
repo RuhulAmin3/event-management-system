@@ -1,8 +1,16 @@
-import { Input } from "~/components/ui/input";
-import { Select, SelectTrigger, SelectValue } from "~/components/ui/select";
+/**
+ * External Imports
+*/
+
 import { Search, Filter } from "lucide-react";
-import { Button } from "~/components/ui/button";
+
+/**
+ *Internal Imports
+*/
+import { Select, SelectTrigger, SelectValue } from "~/components/ui/select";
 import SelectCategory from "~/components/select-category";
+import { Button } from "~/components/ui/button";
+import { Input } from "~/components/ui/input";
 
 const SearchSection = () => {
   return (

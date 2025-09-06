@@ -1,12 +1,5 @@
-import { Card } from "~/components/ui/card";
-import { Target, Clock4, Users, MapPin } from "lucide-react";
-
-const tips = [
-  { icon: Target, title: "Be Specific", description: "Include clear details about what attendees can expect" },
-  { icon: Clock4, title: "Plan Ahead", description: "Give people enough time to plan and register" },
-  { icon: Users, title: "Know Your Audience", description: "Tailor your event description to your target attendees" },
-  { icon: MapPin, title: "Clear Location", description: "Provide detailed location or online meeting information" },
-];
+import { Card } from "~/components/ui/card"; 
+import { tips } from "~/constant";
 
 const EventTips = () => (
   <div>

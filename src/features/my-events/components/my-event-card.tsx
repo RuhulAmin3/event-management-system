@@ -1,8 +1,7 @@
 "use client";
-
-import { Card, CardContent } from "~/components/ui/card";
-import { Badge } from "~/components/ui/badge";
-import { Button } from "~/components/ui/button";
+/**
+ * External Imports
+*/
 import { Calendar, MapPin, Users, Edit, Trash2 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -17,6 +16,12 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "~/components/ui/alert-dialog";
+/**
+ * Internal Imports
+*/
+import { Card, CardContent } from "~/components/ui/card";
+import { Button } from "~/components/ui/button";
+import { Badge } from "~/components/ui/badge";
 import { Event } from "~/types";
 
 interface EventCardProps {

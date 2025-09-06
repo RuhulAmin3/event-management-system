@@ -1,13 +1,16 @@
 "use client";
-
-import { useState } from "react";
-import { Button } from "~/components/ui/button";
+/**
+ * External Imports
+*/
 import { Plus } from "lucide-react";
 import Link from "next/link";
 import { toast } from "sonner";
 
+/**
+ * Internal Imports
+*/
+import { Button } from "~/components/ui/button";
 import { Event } from "~/types";
-import Loader from "~/components/ui/loader";
 import EmptyState from "./empty-state";
 import MyEventCard from "./my-event-card";
 import EventStats from "./event-stats";
@@ -17,26 +20,20 @@ type MyEventsClientProps = {
   initialEvents: Event[];
 };
 
-const MyEventsClient = ({ initialEvents }: MyEventsClientProps) => {
-  const [events, setEvents] = useState<Event[]>(initialEvents);
-  const [loading, setLoading] = useState(false);
+const MyEventsClient = ({ initialEvents: events }: MyEventsClientProps) => {
 
   const handleDeleteEvent = async (eventId: string) => {
     try {
-      setLoading(true);
       const result = await deleteEvent(eventId);
       if (result) {
         toast.success("Event deleted successfully");
-        setEvents((prev) => prev.filter((e) => e.id !== eventId));
       }
     } catch {
       toast.error("Failed to delete event");
-    } finally {
-      setLoading(false);
     }
   };
 
-  if (events.length === 0 && !loading) {
+  if (events.length === 0) {
     return (
       <div className="min-h-screen bg-background">
         <div className="container mx-auto px-4 py-8">
@@ -80,20 +77,12 @@ const MyEventsClient = ({ initialEvents }: MyEventsClientProps) => {
         </div>
 
         {/* Content */}
-        {loading ? (
-          <div className="flex items-center justify-center w-full h-[60vh]">
-            <Loader size="md" />
-          </div>
-        ) : (
-          <>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {events.map((event) => (
-                <MyEventCard key={event.id} event={event} onDelete={handleDeleteEvent} />
-              ))}
-            </div>
-            <EventStats events={events} />
-          </>
-        )}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {events.map((event) => (
+            <MyEventCard key={event.id} event={event} onDelete={handleDeleteEvent} />
+          ))}
+        </div>
+        <EventStats events={events} />
       </div>
     </div>
   );

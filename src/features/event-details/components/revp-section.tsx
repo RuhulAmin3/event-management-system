@@ -1,17 +1,21 @@
 "use client";
-
-import { Button } from "~/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
-import { getCurrentUser, handleRsvpToggle } from "~/app/action";
-
+/**
+ * External Imports
+*/
 import {
   Users,
   Share2,
   Heart,
 } from "lucide-react";
-import { Event } from "~/types";
 import { useEffect, useState } from "react";
+/**
+ * Internal Imports
+*/
+import { Button } from "~/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
+import { getCurrentUser, handleRsvpToggle } from "~/app/action";
 
+import { Event } from "~/types";
 
 const RsvpSection = ({
   event,
@@ -40,8 +44,6 @@ const RsvpSection = ({
         setIsRsvps(true);
     })
   }, [event])
-
-
 
   return (
     <Card className="sticky top-24">

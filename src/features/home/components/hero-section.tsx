@@ -1,7 +1,14 @@
+/**
+ * External Imports
+*/
 import { Plus, Play, Users, Calendar, Star } from "lucide-react";
 import Link from "next/link";
-import { Badge } from "~/components/ui/badge";
+
+/**
+ * Internal Imports
+*/
 import { Button } from "~/components/ui/button";
+import { Badge } from "~/components/ui/badge";
 
 const HeroSection = () => {
   return (

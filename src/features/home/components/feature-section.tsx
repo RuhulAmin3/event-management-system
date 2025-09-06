@@ -1,3 +1,6 @@
+/**
+ * Internal Imports
+*/
 import { Card, CardContent } from "~/components/ui/card";
 import { features } from "~/constant";
 

@@ -162,6 +162,7 @@ export async function deleteEvent(id: string): Promise<boolean> {
     throw new Error("Failed to delete event");
   }
 
-  await response.json(); // or just .text() if no JSON returned
+  revalidateTag("events");
+  await response.json(); 
   return true; // success
 }

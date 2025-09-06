@@ -1,12 +1,17 @@
 "use client";
-
+/**
+ * External Imports
+*/
 import { useFormContext, Controller } from "react-hook-form";
+import { Tag, MapPin } from "lucide-react";
+
+/**
+ * Internal Imports
+*/
 import { Input } from "~/components/ui/input";
 import { Textarea } from "~/components/ui/textarea";
 import { Label } from "~/components/ui/label";
 import { Select, SelectTrigger, SelectValue } from "~/components/ui/select";
-import { Tag, MapPin } from "lucide-react";
-
 import SelectCategory from "~/components/select-category";
 import DatePicker from "~/components/ui/date-picker";
 import TimePicker from "~/components/ui/time-picker";

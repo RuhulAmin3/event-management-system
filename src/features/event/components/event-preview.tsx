@@ -1,9 +1,14 @@
 "use client";
-
+/**
+ * External Imports
+*/
 import { useFormContext } from "react-hook-form";
+import Image from "next/image";
+/**
+ * Internal Imports
+*/
 import { Card, CardHeader, CardContent, CardTitle } from "~/components/ui/card";
 import { Calendar, MapPin } from "lucide-react";
-import Image from "next/image";
 import { isValidUrl } from "~/lib/utils";
 
 const EventPreview = () => {

@@ -1,7 +1,10 @@
+/**
+ * Internal Imports
+*/
 import { Button } from "~/components/ui/button";
+import { fetchAllEvents } from "~/app/action";
 import EventCard from "./event-card";
 import { Event } from "~/types";
-import { fetchAllEvents } from "~/app/action";
 
 const EventsGrid = async () => { 
   const fetchedEvents = await fetchAllEvents();

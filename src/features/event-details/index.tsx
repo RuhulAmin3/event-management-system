@@ -1,9 +1,12 @@
-import { Event } from "~/types";
-import BackButton from "~/components/back-button";
-import EventHeader from "./components/event-header";
+/**
+ * Internal Imports
+*/
 import EventDescription from "./components/event-description";
 import OrganizerInfo from "./components/organizer-info";
+import EventHeader from "./components/event-header";
 import RsvpSection from "./components/revp-section";
+import BackButton from "~/components/back-button";
+import { Event } from "~/types";
 
 const EventDetail = ({ event }: { event: Event }) => {
    return (

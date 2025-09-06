@@ -1,8 +1,14 @@
+/**
+ * External Imports
+*/
 import { notFound } from 'next/navigation';
-import { getSingleEvent } from '~/app/action';
-import BackButton from '~/components/back-button';
+/**
+ * Internal Imports
+*/
 import EventForm from '~/features/event/components/event-form';
 import { EventFormValues } from '~/features/event/schema';
+import BackButton from '~/components/back-button';
+import { getSingleEvent } from '~/app/action';
 
 type Props = {
     params: Promise<{ id: string }>

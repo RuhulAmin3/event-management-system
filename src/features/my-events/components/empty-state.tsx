@@ -1,5 +1,8 @@
-import { Calendar, Plus } from "lucide-react";
+/**
+ * External Imports
+*/
 import Link from "next/link";
+import { Calendar, Plus } from "lucide-react";
 import { Button } from "~/components/ui/button";
 
 const EmptyState = () => (
