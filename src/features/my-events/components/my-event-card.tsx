@@ -50,7 +50,7 @@ const MyEventCard = ({ event, onDelete }: EventCardProps) => {
             <Button
               size="sm"
               variant="secondary"
-              className="h-8 w-8 p-0 bg-black/20 hover:bg-black/40 backdrop-blur-sm border-0"
+              className="h-8 w-8 p-0 bg-black/20 hover:bg-black/40 backdrop-blur-sm border-0 cursor-pointer"
             >
               <Edit className="w-3 h-3 text-white" />
             </Button>
@@ -61,7 +61,7 @@ const MyEventCard = ({ event, onDelete }: EventCardProps) => {
               <Button
                 size="sm"
                 variant="secondary"
-                className="h-8 w-8 p-0 bg-black/20 hover:bg-red-500/80 backdrop-blur-sm border-0"
+                className="h-8 w-8 p-0 bg-black/20 hover:bg-red-500/80 backdrop-blur-sm border-0 cursor-pointer"
               >
                 <Trash2 className="w-3 h-3 text-white" />
               </Button>

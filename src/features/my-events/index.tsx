@@ -1,6 +1,6 @@
 import MyEventsClient from "./components/my-events-client";
-import { Event } from "~/types";
 import { fetchAllEvents } from "~/app/action";
+import { Event } from "~/types";
 
 export default async function MyEvents() {
 

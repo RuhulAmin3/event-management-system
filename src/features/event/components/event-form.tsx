@@ -1,81 +1,25 @@
 "use client";
 /**
  * External Imports
-*/
-import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useRouter } from "next/navigation";
-import { toast } from "sonner";
+ */
+import { FormProvider } from "react-hook-form";
 
 /**
  * Internal Imports
-*/
+ */
 import EventFormFields from "./event-form-fields";
 import EventPreview from "./event-preview";
-import { Button } from "~/components/ui/button";
 import EventTips from "./event-tips";
-import { EventFormValues, validationSchema } from "../schema";
-import { Event } from "~/types";
-import { getCategoryColor } from "~/lib/utils";
-import { createEvent, updateEvent } from "~/app/action";
+import { useEventForm } from "../hooks/use-event-form";
+import EventActions from "./event-actions";
 
-const EventForm = ({ id, defaultValues }: { id?: string; defaultValues?: EventFormValues }) => {
-  const router = useRouter();
 
-  // Initialize react-hook-form
-  const methods = useForm<EventFormValues>({
-    resolver: zodResolver(validationSchema),
-    defaultValues: defaultValues || {
-      title: "",
-      description: "",
-      date: new Date().toDateString(),
-      time: "10:30:00",
-      location: "",
-      category: "",
-      image: "",
-    },
-  });
-
+const EventForm = ({ id, defaultValues }: { id?: string; defaultValues?: any }) => {
+  const { methods, onSubmit } = useEventForm(id, defaultValues);
   const {
     handleSubmit,
     formState: { isSubmitting },
   } = methods;
-
-  const onSubmit: SubmitHandler<EventFormValues> = async (data) => {
-    try {
-      const eventId = id || `event_${Date.now()}_${Math.random().toString(36).substring(2, 9)}`;
-      const event: Omit<Event, "createdBy"> = {
-        id: eventId,
-        title: data.title,
-        description: data.description,
-        category: data.category,
-        date: data.date,
-        time: data.time,
-        location: data.location,
-        image: data.image,
-        categoryColor: getCategoryColor(data.category),
-        rsvps: [],
-        createdAt: new Date().toISOString()
-      };
-
-      if (id) {
-        await updateEvent({ id, event })
-      } else {
-        const res = await createEvent(event);
-        console.log("res", res);
-      }
-
-      toast.success(id ? "Event updated successfully" : "Event created successfully", {
-        position: "bottom-right",
-        duration: 3000,
-      })
-
-      router.push("/my-events");
-    } catch (err) {
-      console.log(err);
-      toast.error("Failed to save event. Try again.");
-    }
-  };
 
   return (
     <FormProvider {...methods}>
@@ -83,18 +27,10 @@ const EventForm = ({ id, defaultValues }: { id?: string; defaultValues?: EventFo
         onSubmit={handleSubmit(onSubmit)}
         className="grid grid-cols-1 lg:grid-cols-3 gap-8"
       >
-        {/* Left: Form Fields */}
+        {/* Left: Form Fields + Actions */}
         <div className="lg:col-span-2 space-y-6">
           <EventFormFields />
-
-          <div className="flex gap-4 pt-6">
-            <Button variant="outline" type="button" disabled={isSubmitting} onClick={() => toast.warning("Just for demo purpose!!!")}>
-              Save as Draft
-            </Button>
-            <Button type="submit" className="flex-1" disabled={isSubmitting}>
-              {id ? "Update Event" : "Create Event"}
-            </Button>
-          </div>
+          <EventActions isSubmitting={isSubmitting} id={id} />
         </div>
 
         {/* Right: Live Preview */}
