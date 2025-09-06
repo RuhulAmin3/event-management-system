@@ -1,4 +1,16 @@
-import MyEvents from '~/features/my-events'
+/**
+ * External imports
+ */
+import dynamic from 'next/dynamic';
+
+/**
+ * Internal imports
+ */
+import CardSkeletonGrid from '~/components/card-skeleton-grid';
+
+const MyEvents = dynamic(() => import("~/features/my-events"), {
+  loading: () => <CardSkeletonGrid />,
+});
 
 const MyEventsPage = () => {
   return (

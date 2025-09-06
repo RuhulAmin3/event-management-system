@@ -1,11 +1,22 @@
 "use client";
+
+/**
+ * External imports
+ */
+import { usePathname } from "next/navigation";
 import { useState } from "react";
+import Link from "next/link";
+
+/**
+ * Internal imports
+ */
 import { Button } from "~/components/ui/button";
 import { Calendar, Bell, User, Menu, X } from "lucide-react";
-import Link from "next/link";
+import { cn } from "~/lib/utils";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -25,9 +36,33 @@ const Header = () => {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
-            <Link href="/" className="text-foreground hover:text-primary transition-colors font-medium">Home</Link>
-            <Link href="/create-event" className="text-muted-foreground hover:text-primary transition-colors font-medium">Create Event</Link>
-            <Link href="/my-events" className="text-muted-foreground hover:text-primary transition-colors font-medium">My Events</Link>
+            <Link
+              href="/"
+              className={cn(
+                "text-foreground hover:text-primary transition-colors font-medium",
+                pathname === "/" && "text-primary"
+              )}
+            >
+              Home
+            </Link>
+            <Link
+              href="/create-event"
+              className={cn(
+                "text-foreground hover:text-primary transition-colors font-medium",
+                pathname === "/create-event" && "text-primary"
+              )}
+            >
+              Create Event
+            </Link>
+            <Link
+              href="/my-events"
+              className={cn(
+                "text-foreground hover:text-primary transition-colors font-medium",
+                pathname === "/my-events" && "text-primary"
+              )}
+            >
+              My Events
+            </Link>
           </nav>
 
           {/* Desktop Right Side */}
@@ -55,8 +90,11 @@ const Header = () => {
         </div>
 
         {/* Mobile Navigation */}
-        <div className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${isMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
-          }`}>
+        <div
+          className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
+            isMenuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+          }`}
+        >
           <nav className="pt-4 pb-2 border-t border-border/50 mt-4">
             <div className="flex flex-col space-y-4">
               <Link
@@ -96,4 +134,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default Header;
