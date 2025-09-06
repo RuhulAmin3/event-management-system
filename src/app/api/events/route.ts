@@ -31,7 +31,7 @@ export async function GET(req: NextRequest) {
     return new Response(JSON.stringify({ error: "Failed to fetch events" }), {
       status: 500,
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "application/json", 
       },
     });
   }

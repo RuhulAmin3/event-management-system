@@ -27,7 +27,6 @@ export const getCurrentUser = async (): Promise<string | undefined> => {
 const getBaseUrl = () => {
   if (typeof window !== "undefined") return "";
   if (process.env.NEXT_PUBLIC_BASE_URL) return process.env.NEXT_PUBLIC_BASE_URL;
-  return "http://localhost:4000/api";
 };
 
 /**
@@ -201,7 +200,7 @@ export async function deleteEvent(id: string): Promise<boolean> {
   }
 
   revalidateTag("events"); // Trigger revalidation for event cache
-  await response.json(); 
+  await response.json();
 
   return true;
 }
