@@ -21,8 +21,8 @@ export async function POST(
   }
 
   try {
-    // Step 1: Fetch current event from your backend
-    const fetchRes = await fetch(`http://localhost:3000/events/${id}`, {
+    // Step 1: Fetch current event from json server
+    const fetchRes = await fetch(`${process.env.JSON_SERVER_URL}/${id}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -49,7 +49,7 @@ export async function POST(
     }
 
     // Step 3: Update event with new rsvps list
-    const updateRes = await fetch(`http://localhost:3000/events/${id}`, {
+    const updateRes = await fetch(`${process.env.JSON_SERVER_URL}/${id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -62,6 +62,8 @@ export async function POST(
     }
 
     const updatedEvent = await updateRes.json();
+
+    console.log("updatedEvent rsvps:", updatedEvent["rsvps"]);
 
     // Step 4: Return updated event
     return Response.json(

@@ -8,7 +8,7 @@ export async function GET(
   const { id } = await ctx.params;
   try {
     // Fetch data from external/backend source
-    const res = await fetch(`http://localhost:3000/events/${id}`, {
+    const res = await fetch(`${process.env.JSON_SERVER_URL}/${id}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -22,7 +22,7 @@ export async function GET(
     }
 
     const event = await res.json();
-
+    console.log("single get:", event["rsvps"]);
     return new Response(JSON.stringify(event), {
       status: 200,
       headers: {
@@ -51,7 +51,7 @@ export async function PATCH(
     const body = await req.json();
 
     // Forward the PATCH request to your backend
-    const res = await fetch(`http://localhost:3000/events/${id}`, {
+    const res = await fetch(`${process.env.JSON_SERVER_URL}/${id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -83,7 +83,7 @@ export async function DELETE(
 ) {
   const { id } = await params;
   try {
-    const deleteRes = await fetch(`http://localhost:3000/events/${id}`, {
+    const deleteRes = await fetch(`${process.env.JSON_SERVER_URL}/${id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",

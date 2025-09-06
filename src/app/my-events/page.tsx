@@ -1,20 +1,19 @@
 /**
  * External imports
  */
-import dynamic from 'next/dynamic';
+import { Suspense } from 'react';
 
 /**
  * Internal imports
  */
 import CardSkeletonGrid from '~/components/card-skeleton-grid';
-
-const MyEvents = dynamic(() => import("~/features/my-events"), {
-  loading: () => <CardSkeletonGrid />,
-});
+import MyEvents from "~/features/my-events"
 
 const MyEventsPage = () => {
   return (
-    <MyEvents/>
+    <Suspense fallback={<CardSkeletonGrid />}>
+      <MyEvents />
+    </Suspense>
   )
 }
 

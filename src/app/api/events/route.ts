@@ -5,7 +5,7 @@ export async function GET(req: NextRequest) {
 
   try {
     // Fetch data from external/backend source
-    const res = await fetch(`http://localhost:3000/events${search}`, {
+    const res = await fetch(`${process.env.JSON_SERVER_URL}${search}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -26,9 +26,8 @@ export async function GET(req: NextRequest) {
         "Content-Type": "application/json",
       },
     });
-
   } catch (err) {
-    console.log("err", err)
+    console.log("err", err);
     return new Response(JSON.stringify({ error: "Failed to fetch events" }), {
       status: 500,
       headers: {
@@ -67,7 +66,7 @@ export async function POST(req: Request) {
     }
 
     // save to the json server
-    const response = await fetch("http://localhost:3000/events", {
+    const response = await fetch(String(process.env.JSON_SERVER_URL), {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
