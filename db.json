@@ -104,17 +104,15 @@
       "id": "event_1757085414606_52o004i",
       "title": "New Autumn Meetup for Business Guy",
       "description": "Every Business man can build there network with successful people respective their own sector. Every body are most welcome.",
-      "category": "business",
+      "category": "entertainment",
       "date": "2025-09-23T18:00:00.000Z",
       "time": "10:00:00",
       "location": "Bangladesh",
       "image": "https://ik.imagekit.io/cedope9wx/assets/art-exhibition.jpg?updatedAt=1757034748782",
       "categoryColor": "bg-gray-100 text-gray-800",
       "createdBy": "user_1757062370402",
-      "rsvps": [
-        "user_1757062370402"
-      ],
-      "createdAt": "2025-09-05T16:04:19.381Z"
+      "rsvps": [],
+      "createdAt": "2025-09-06T04:06:23.017Z"
     },
     {
       "id": "event_1757087447846_nf7ms4y",

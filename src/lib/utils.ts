@@ -14,7 +14,9 @@ export async function fetchAllEvents(
     .join("&");
 
   // Build final URL
-  const url = `/api/events${queryString ? `?${queryString}` : ""}`;
+  const url = `http://localhost:4000/api/events${
+    queryString ? `?${queryString}` : ""
+  }`;
   const response = await fetch(url, {
     next: {
       tags: ["events"],
@@ -30,7 +32,7 @@ export async function fetchAllEvents(
 }
 
 export async function getSingleEvent(id: string): Promise<Event> {
-  const response = await fetch(`http://localhost:3001/api/events/${id}`, {
+  const response = await fetch(`http://localhost:4000/api/events/${id}`, {
     next: {
       tags: ["events"],
     },
@@ -105,7 +107,7 @@ export async function handleRsvpToggle(
 }
 
 export async function deleteEvent(id: string) {
-  const response = await fetch(`http://localhost:3001/api/events/${id}`, {
+  const response = await fetch(`http://localhost:4000/api/events/${id}`, {
     method: "DELETE",
   });
 
@@ -134,12 +136,11 @@ export const getCategoryColor = (category: string) => {
   return colorMap[category] || "bg-gray-100 text-gray-800";
 };
 
-
 export function isValidUrl(string: string): boolean {
-    try {
-        new URL(string);
-        return true;
-    } catch (_) {
-        return false;
-    }
+  try {
+    new URL(string);
+    return true;
+  } catch (_) {
+    return false;
+  }
 }
