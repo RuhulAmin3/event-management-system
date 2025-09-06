@@ -10,7 +10,7 @@ import {
   Heart,
 } from "lucide-react";
 import { Event } from "~/types";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 
 const RsvpSection = ({
@@ -20,19 +20,28 @@ const RsvpSection = ({
 }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [isRsvps, setIsRsvps] = useState(false);
-  
+
   const handleRsvp = async () => {
+    const userId = await getCurrentUser() as string;
     if (!event.id) return;
     try {
       setIsLoading(true);
       const newEvent = await handleRsvpToggle(event.id);
-      const userId = await getCurrentUser() as string;
       setIsRsvps(newEvent.rsvps.includes(userId));
     } catch (err) {
     } finally {
       setIsLoading(false);
     }
   };
+
+  useEffect(() => {
+    getCurrentUser().then((userId) => {
+      if (event.rsvps.includes(userId as string))
+        setIsRsvps(true);
+    })
+  }, [event])
+
+
 
   return (
     <Card className="sticky top-24">

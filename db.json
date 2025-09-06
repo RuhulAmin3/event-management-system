@@ -25,7 +25,9 @@
       "image": "https://ik.imagekit.io/cedope9wx/assets/networking-event.jpg?updatedAt=1757034748757",
       "categoryColor": "bg-green-100 text-green-800",
       "createdBy": "sample_organizer",
-      "rsvps": [],
+      "rsvps": [
+        "user_1757137995393"
+      ],
       "createdAt": "2024-04-05T10:00:00.000Z"
     },
     {
@@ -153,6 +155,7 @@
       "image": "https://ik.imagekit.io/cedope9wx/assets/marathon.jpg?updatedAt=1757034748852",
       "categoryColor": "bg-gray-100 text-gray-800",
       "rsvps": [
+        {},
         {},
         {},
         {},

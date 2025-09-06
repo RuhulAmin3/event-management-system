@@ -1,4 +1,3 @@
-import { revalidateTag } from "next/cache";
 import { NextRequest } from "next/server";
 
 export async function POST(
@@ -64,7 +63,6 @@ export async function POST(
 
     const updatedEvent = await updateRes.json();
 
-     revalidateTag("events");
     // Step 4: Return updated event
     return Response.json(
       {

@@ -2,6 +2,7 @@
 
 import { Event } from "~/types";
 import { cookies } from "next/headers";
+import { revalidateTag } from "next/cache";
 
 const USER_KEY = "eventhub_user";
 
@@ -128,19 +129,22 @@ export async function updateEvent({
 export async function handleRsvpToggle(eventId: string): Promise<Event> {
   const baseUrl = getBaseUrl();
   const url = `${baseUrl}/events/${eventId}/rsvp`;
-  const userId = getCurrentUser();
+  const userId = await getCurrentUser();
+
   const response = await fetch(url, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({  userId }),
+    body: JSON.stringify({ userId }),
   });
 
   if (!response.ok) {
     const error = await response.json().catch(() => ({}));
     throw new Error(error.message || "Failed to RSVP");
   }
+
+  revalidateTag("events");
 
   const data = await response.json();
   return data.event;
