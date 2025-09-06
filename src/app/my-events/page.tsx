@@ -14,7 +14,11 @@ export const dynamic = 'force-dynamic';
 
 const MyEventsPage = () => {
   return (
-    <Suspense fallback={<CardSkeletonGrid />}>
+    <Suspense fallback={
+      <div className='my-6'>
+        <CardSkeletonGrid />
+      </div>
+    }>
       <MyEvents />
     </Suspense>
   )

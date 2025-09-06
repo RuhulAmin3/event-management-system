@@ -14,7 +14,6 @@ const EventsGrid = async () => {
     fetchedEvents = await fetchAllEvents();
   } catch (error) {
     console.error("Failed to load events from Event Grid:", error);
-    // Return empty grid on error - this prevents build failure
     fetchedEvents = [];
   }
 
