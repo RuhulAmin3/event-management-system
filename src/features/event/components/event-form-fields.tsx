@@ -1,20 +1,18 @@
 "use client";
 /**
  * External Imports
-*/
-import { useFormContext, Controller } from "react-hook-form";
-import { Tag, MapPin } from "lucide-react";
+ */
+import { useFormContext } from "react-hook-form";
+import { MapPin } from "lucide-react";
 
 /**
  * Internal Imports
-*/
-import { Input } from "~/components/ui/input";
-import { Textarea } from "~/components/ui/textarea";
-import { Label } from "~/components/ui/label";
-import { Select, SelectTrigger, SelectValue } from "~/components/ui/select";
+ */
+import DateTimeFields from "~/components/form/date-time-field";
+import TextAreaField from "~/components/form/text-area-field";
 import SelectCategory from "~/components/select-category";
-import DatePicker from "~/components/ui/date-picker";
-import TimePicker from "~/components/ui/time-picker";
+import SelectField from "~/components/form/select-field";
+import TextField from "~/components/form/text-field";
 import { EventFormValues } from "../schema";
 
 const EventFormFields = () => {
@@ -24,107 +22,43 @@ const EventFormFields = () => {
         setValue,
         formState: { errors },
     } = useFormContext<EventFormValues>();
-    console.log("errors", errors);
+
     return (
         <div className="space-y-6">
-            {/* Title */}
-            <div>
-                <Label>Event Title *</Label>
-                <Input
-                    placeholder="Enter event title"
-                    {...register("title")}
-                    className={
-                        errors.title ? "border-red-500 focus-visible:ring-red-500" : ""
-                    }
-                />
-            </div>
+            <TextField
+                label="Event Title *"
+                placeholder="Enter event title"
+                register={register("title")}
+                error={!!errors.title}
+            />
 
-            {/* Description */}
-            <div>
-                <Label>Event Description *</Label>
-                <Textarea
-                    placeholder="Describe your event"
-                    {...register("description")}
-                    className={
-                        errors.description
-                            ? "border-red-500 focus-visible:ring-red-500"
-                            : ""
-                    }
-                />
-            </div>
+            <TextAreaField
+                label="Event Description *"
+                placeholder="Describe your event"
+                register={register("description")}
+                error={!!errors.description}
+            />
 
-            {/* Date & Time */}
-            <div className="grid grid-cols-2 gap-4">
-                <Controller
-                    name="date"
-                    control={control}
-                    render={({ field }) => (
-                        <DatePicker 
-                            value={field.value}
-                            onChange={(date) => setValue("date", date)}
-                        />
-                    )}
-                />
-                <Controller
-                    name="time"
-                    control={control}
-                    render={({ field }) => (
-                        <TimePicker 
-                            value={field.value}
-                            onChange={(time) => setValue("time", time)}
-                        />
-                    )}
-                />
-            </div>
-            {/* Location */}
-            <div>
-                <Label>Location *</Label>
-                <div className="relative">
-                    <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-                    <Input
-                        placeholder="Enter venue or online link"
-                        className={`pl-10 ${errors.location ? "border-red-500 focus-visible:ring-red-500" : ""
-                            }`}
-                        {...register("location")}
-                    />
-                </div>
-            </div>
+            <DateTimeFields control={control} setValue={setValue} />
 
-            {/* Category */}
-            <div>
-                <Label>Category *</Label>
-                <Controller
-                    name="category"
-                    control={control}
-                    render={({ field }) => (
-                        <Select onValueChange={field.onChange} value={field.value}>
-                            <SelectTrigger
-                                className={
-                                    errors.category
-                                        ? "border-red-500 focus-visible:ring-red-500"
-                                        : ""
-                                }
-                            >
-                                <Tag className="w-4 h-4 mr-2 text-muted-foreground" />
-                                <SelectValue placeholder="Select event category" />
-                            </SelectTrigger>
-                            <SelectCategory />
-                        </Select>
-                    )}
-                />
-            </div>
+            <TextField
+                label="Location *"
+                placeholder="Enter venue or online link"
+                register={register("location")}
+                error={!!errors.location}
+                icon={<MapPin className="w-4 h-4" />}
+            />
 
-            {/* Image URL */}
-            <div>
-                <Label>Event Image URL *</Label>
-                <Input
-                    className={
-                        errors.image ? "border-red-500 focus-visible:ring-red-500" : ""
-                    }
-                    placeholder="https://example.com/image.jpg"
-                    {...register("image")}
-                />
-            </div>
+            <SelectField name="category" control={control} error={!!errors.category}>
+                <SelectCategory />
+            </SelectField>
+
+            <TextField
+                label="Event Image URL *"
+                placeholder="https://example.com/image.jpg"
+                register={register("image")}
+                error={!!errors.image}
+            />
         </div>
     );
 };

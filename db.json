@@ -143,6 +143,20 @@
       "rsvps": [],
       "createdAt": "2025-09-06T07:36:15.241Z",
       "createdBy": "user_1757137995393"
+    },
+    {
+      "id": "event_1757145383743_rsxfvyn",
+      "title": "sdfasf",
+      "description": "sdf",
+      "category": "entertainment",
+      "date": "Sat Sep 06 2025",
+      "time": "10:30:00",
+      "location": "Comilla, Bangladesh",
+      "image": "https://ik.imagekit.io/cedope9wx/assets/cooking-class.jpg?updatedAt=1757034748787",
+      "categoryColor": "bg-gray-100 text-gray-800",
+      "rsvps": [],
+      "createdAt": "2025-09-06T07:56:51.464Z",
+      "createdBy": "user_1757137995393"
     }
   ]
 }
