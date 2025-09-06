@@ -1,7 +1,7 @@
 import { Button } from "~/components/ui/button";
 import EventCard from "./event-card";
 import { Event } from "~/types";
-import { fetchAllEvents } from "~/lib/utils";
+import { fetchAllEvents } from "~/app/action";
 
 const EventsGrid = async () => { 
   const fetchedEvents = await fetchAllEvents();
