@@ -1,6 +1,6 @@
 import Home from "~/features/home";
 
-export default function HomePage() {
+export default function HomePage() { 
   return (
    <Home/>
   );

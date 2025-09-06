@@ -17,8 +17,7 @@ export default function GlobalError({
   }, [error]);
 
   return (
-    <html>
-      <body className="flex min-h-screen items-center justify-center bg-gray-50 dark:bg-neutral-900 px-4">
+      <div className="flex min-h-screen items-center justify-center bg-gray-50 dark:bg-neutral-900 px-4">
         <div className="max-w-md w-full rounded-2xl bg-white dark:bg-neutral-800 shadow-lg p-8 text-center space-y-6">
           <div className="flex justify-center">
             <div className="flex items-center justify-center h-16 w-16 rounded-full bg-red-100 dark:bg-red-900/40">
@@ -59,7 +58,6 @@ export default function GlobalError({
             </pre>
           )}
         </div>
-      </body>
-    </html>
+      </div>
   );
 }
