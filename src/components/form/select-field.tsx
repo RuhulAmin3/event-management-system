@@ -10,7 +10,7 @@ interface Props {
   name: string;
   control: any;
   error?: boolean;
-  children: React.ReactNode; // pass <SelectCategory />
+  children: React.ReactNode;
 }
 
 const SelectField = ({ name, control, error, children }: Props) => {

@@ -1,12 +1,12 @@
 /**
  * Internal Imports
 */
-import { Button } from "~/components/ui/button";
 import { fetchAllEvents } from "~/app/action";
 import EventCard from "./event-card";
 import { Event } from "~/types";
+import MoreEventButton from "./more-event-btn";
 
-const EventsGrid = async () => { 
+const EventsGrid = async () => {
   const fetchedEvents = await fetchAllEvents();
   return (
     <section className="py-16 bg-background">
@@ -19,12 +19,7 @@ const EventsGrid = async () => {
             />
           ))}
         </div>
-
-        <div className="text-center mt-12">
-          <Button variant="outline" size="lg">
-            Load More Events
-          </Button>
-        </div>
+        <MoreEventButton />
       </div>
     </section>
   );

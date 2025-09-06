@@ -131,20 +131,6 @@
       "createdAt": "2025-09-05T15:50:48.182Z"
     },
     {
-      "id": "event_1757143462240_ujzg1d9",
-      "title": "sasdfssdfasdfasfasf",
-      "description": "asdf",
-      "category": "sports",
-      "date": "2025-09-16T18:00:00.000Z",
-      "time": "10:30:00",
-      "location": "asdfdsf",
-      "image": "https://ik.imagekit.io/cedope9wx/assets/cooking-class.jpg?updatedAt=1757034748787",
-      "categoryColor": "bg-orange-100 text-orange-800",
-      "rsvps": [],
-      "createdAt": "2025-09-06T07:36:15.241Z",
-      "createdBy": "user_1757137995393"
-    },
-    {
       "id": "event_1757145383743_rsxfvyn",
       "title": "sdfasf",
       "description": "sdf",
@@ -156,6 +142,20 @@
       "categoryColor": "bg-gray-100 text-gray-800",
       "rsvps": [],
       "createdAt": "2025-09-06T07:56:51.464Z",
+      "createdBy": "user_1757137995393"
+    },
+    {
+      "id": "event_1757146385548_t5mm7wy",
+      "title": "sdfsf",
+      "description": "sdfas",
+      "category": "sports",
+      "date": "Sat Sep 06 2025",
+      "time": "10:30:00",
+      "location": "asdf",
+      "image": "https://ik.imagekit.io/cedope9wx/assets/art-exhibition.jpg?updatedAt=1757034748782",
+      "categoryColor": "bg-orange-100 text-orange-800",
+      "rsvps": [],
+      "createdAt": "2025-09-06T08:13:18.677Z",
       "createdBy": "user_1757137995393"
     }
   ]
