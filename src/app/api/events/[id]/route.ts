@@ -21,8 +21,7 @@ export async function GET(
       );
     }
 
-    const event = await res.json();
-    console.log("single get:", event["rsvps"]);
+    const event = await res.json(); 
     return new Response(JSON.stringify(event), {
       status: 200,
       headers: {

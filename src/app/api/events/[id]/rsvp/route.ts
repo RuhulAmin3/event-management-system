@@ -62,9 +62,7 @@ export async function POST(
     }
 
     const updatedEvent = await updateRes.json();
-
-    console.log("updatedEvent rsvps:", updatedEvent["rsvps"]);
-
+    
     // Step 4: Return updated event
     return Response.json(
       {

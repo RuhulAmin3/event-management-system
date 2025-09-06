@@ -8,7 +8,7 @@ type Props = {
 }
 const EventDetailsPage = async ({ params }: Props) => {
     const { id } = await params;
-    const event: Event = await getSingleEvent(id);
+    const event: Event | false = await getSingleEvent(id);
     if (!event) return notFound();
     return (
         <EventDetail event={event} />

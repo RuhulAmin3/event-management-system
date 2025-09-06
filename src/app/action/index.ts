@@ -19,14 +19,12 @@ export const getCurrentUser = async (): Promise<string | undefined> => {
   return user;
 };
 
-/**
- * Helper function to determine the base API URL depending on environment
- *
- * @returns {string} Base URL for API requests
- */
 const getBaseUrl = () => {
+  //  When running in the browser, use relative URL
   if (typeof window !== "undefined") return "";
-  if (process.env.NEXT_PUBLIC_BASE_URL) return process.env.NEXT_PUBLIC_BASE_URL;
+
+  //  On server (SSR or build), also use relative path
+  return process.env.NEXT_PUBLIC_BASE_URL || "";
 };
 
 /**
@@ -118,10 +116,11 @@ export async function createEvent(
   });
 
   if (!response.ok) {
-    const error = await response.json().catch(() => ({}));
+    const error = await response.json().catch(() => ({}));  
     throw new Error(error.message || "Failed to create event");
   }
 
+  revalidateTag("events"); // Trigger revalidation for event cache
   return await response.json();
 }
 
@@ -151,6 +150,7 @@ export async function updateEvent({
     const error = await response.json().catch(() => ({}));
     throw new Error(error.message || "Failed to update event");
   }
+  revalidateTag("events"); // Trigger revalidation for event cache
 
   return await response.json();
 }
@@ -164,7 +164,13 @@ export async function updateEvent({
 export async function handleRsvpToggle(eventId: string): Promise<Event> {
   const baseUrl = getBaseUrl();
   const url = `${baseUrl}/events/${eventId}/rsvp`;
-  const userId = await getCurrentUser();
+  let userId = await getCurrentUser();
+
+  if (!userId) {
+    userId = `user_${Date.now()}`;
+    const cookieStore = await cookies();
+    cookieStore.set(USER_KEY, userId); // Save new user ID in cookies
+  }
 
   const response = await fetch(url, {
     method: "POST",

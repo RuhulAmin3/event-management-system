@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import MyEventsClient from "./components/my-events-client";
 import { fetchAllEvents } from "~/app/action";
 import { Event } from "~/types";
@@ -8,7 +9,7 @@ export default async function MyEvents() {
   try {
     events = await fetchAllEvents([] , true);
   } catch (error) {
-    console.error("Failed to load events:", error);
+    console.error("Failed to load events from myEvents:", error);
     events = [];
   }
 
