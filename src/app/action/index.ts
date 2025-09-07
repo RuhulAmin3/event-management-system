@@ -44,9 +44,11 @@ export async function fetchAllEvents(
 
   // If fetching only user's events, add createdBy filter
   if (myEvent) {
-    const user = await getCurrentUser();
+    const user = await getCurrentUser(); 
     if (user) {
       query.push({ name: "createdBy", value: user });
+    } else{
+      return [];
     }
   }
 
@@ -116,7 +118,7 @@ export async function createEvent(
   });
 
   if (!response.ok) {
-    const error = await response.json().catch(() => ({}));  
+    const error = await response.json().catch(() => ({}));
     throw new Error(error.message || "Failed to create event");
   }
 
