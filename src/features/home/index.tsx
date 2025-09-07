@@ -5,13 +5,14 @@ import HeroSection from "./components/hero-section";
 import CardSkeletonGrid from "~/components/card-skeleton-grid";
 import EventsGrid from "./components/event-grid";
 
-const Home = () => {
+const Home = ({ searchParams }: { searchParams: { [key: string]: string | undefined } }) => {
+  
   return (
     <Fragment>
       <HeroSection />
       <SearchSection />
       <Suspense fallback={<CardSkeletonGrid />}>
-        <EventsGrid />
+        <EventsGrid searchParams={searchParams} />
       </Suspense>
       <FeaturesSection />
     </Fragment>

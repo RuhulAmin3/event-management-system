@@ -1,7 +1,7 @@
 import Home from "~/features/home";
 
-export default function HomePage() { 
+export default function HomePage({ searchParams }: { searchParams: { [key: string]: string | undefined } }) { 
   return (
-   <Home/>
+   <Home searchParams={searchParams}/>
   );
 }

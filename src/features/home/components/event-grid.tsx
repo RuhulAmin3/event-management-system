@@ -8,10 +8,25 @@ import MoreEventButton from "./more-event-btn";
 
 export const dynamic = "force-dynamic";
 
-const EventsGrid = async () => {
+interface EventsGridProps {
+  searchParams: { [key: string]: string | undefined };
+}
+
+const EventsGrid = async ({ searchParams }: EventsGridProps) => {
+  const { q: searchText, category } = searchParams || {};
+  const query = [];
+
+  if (searchText) {
+    query.push({ name: "search", value: searchText });
+  }
+
+  if (category) {
+    query.push({ name: "category", value: category });
+  }
+
   let fetchedEvents: Event[] = [];
   try {
-    fetchedEvents = await fetchAllEvents();
+    fetchedEvents = await fetchAllEvents(query);
   } catch (error) {
     console.error("Failed to load events from Event Grid:", error);
     fetchedEvents = [];

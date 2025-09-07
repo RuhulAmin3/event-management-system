@@ -12,6 +12,7 @@
 This is a full-stack event management system that allows users to:
 - **Create Events** - Add new events with details, images, and categories
 - **Browse Events** - View all available events in a responsive grid
+- **Search & Filter Events** - Find events by text search and filter by categories
 - **RSVP System** - Users can RSVP to events and track attendance
 - **Manage Events** - Edit, delete, and view statistics for created events
 
@@ -98,7 +99,28 @@ src/
 - RSVP status tracking per user
 - Visual feedback for RSVP status
 
-## 🏗️ Code Architecture & Best Practices
+### 🔎 Search & Filtering System
+- **Text Search** - Search events by title, description, location, or any text content
+- **Category Filtering** - Filter events by predefined categories (Technology, Business, etc.)
+- **Server-Side Filtering** - Search processing happens on the server for better performance
+- **URL-Based Search** - Shareable search URLs with query parameters (`?q=search&category=tech`)
+- **Reset Functionality** - Clear all filters with one click
+
+#### Search Implementation Details:
+
+**Architecture:**
+- **SearchSection Component** - Clean UI component using custom hook
+- **useSearching Hook** - Custom hook managing URL-based search state
+- **EventsGrid Component** - Server-side component that receives filtered data
+- **URL Parameters** - `?q=searchText&category=categoryValue`
+- **Server Actions** - `fetchAllEvents(query)` handles filtering on the server
+
+**Key Features:**
+- 🔗 **URL-based State** - Search state persists in URL for sharing
+- ⚙️ **Server-side Filtering** - Better performance and SEO
+- 🎣 **Custom Hook Logic** - Clean separation of UI and business logic with `useSearching`
+
+## 🏢 Code Architecture & Best Practices
 
 This project demonstrates modern React/Next.js development patterns and clean code principles:
 
@@ -107,8 +129,10 @@ This project demonstrates modern React/Next.js development patterns and clean co
   - `EventCard` - Only displays event information
   - `EventForm` - Only handles event creation/editing
   - `RsvpSection` - Only manages RSVP functionality
+  - `SearchSection` - Clean UI component focused on search interface
 - **Custom Hooks** - Separated business logic from UI components
   - `useEventForm` - Handles form state and validation logic
+  - `useSearching` - Manages search state and URL parameter logic
   - Server actions isolated in `/app/action/` directory
 
 ### 🔄 Reusability & Component Composition
@@ -133,8 +157,14 @@ This project demonstrates modern React/Next.js development patterns and clean co
 - **Server-First Approach** - Data fetched on server when possible
   ```typescript
   // Server Component - /features/home/components/event-grid.tsx
-  const EventsGrid = async () => {
-    const fetchedEvents = await fetchAllEvents(); // Server-side fetch
+  const EventsGrid = async ({ searchParams }: { searchParams: { [key: string]: string | undefined } }) => {
+    const { q: searchText, category } = searchParams || {};
+    const query = [];
+    
+    if (searchText) query.push({ name: "search", value: searchText });
+    if (category) query.push({ name: "category", value: category });
+    
+    const fetchedEvents = await fetchAllEvents(query); // Server-side filtered fetch
     return <EventGrid events={events} />;
   };
   ```
@@ -161,22 +191,31 @@ This project demonstrates modern React/Next.js development patterns and clean co
 ### 🎨 Modern UI Patterns
 - **Compound Components** - Complex UI built from simple parts
 - **Render Props** - Flexible component APIs
-- **Custom Hooks** - Business logic separation
+- **Custom Hooks** - Business logic separation (`useSearching` for search state)
 - **Suspense Boundaries** - Loading states with React 18 features
+- **URL-based State Management** - Search state persisted in URL parameters
 
-### 📊 State Management Strategy
+### 📈 State Management Strategy
 - **Server State** - Managed via server actions and Next.js caching
 - **Client State** - React Hook Form for forms, useState for UI state
+- **URL-based State** - Search parameters stored in URL using Next.js searchParams
 - **Cookie-based Sessions** - Simple user management without complex auth
 - **Optimistic Updates** - Immediate UI feedback for better UX
+- **Search State Persistence** - Search filters maintained across page reloads
 
 ## 🚀 Guide to Test the Application
 
 1. **Homepage** - Browse existing events
-2. **Create Event** - Use the "Create Event" button to add a new event
-3. **My Events** - View your created events and statistics
-4. **Event Details** - Click any event to see details and RSVP
-5. **Edit/Delete** - From "My Events", edit or delete your events
+2. **Search & Filter** - Use the search bar to find events, try category filters
+   - Search for keywords like "conference", "meetup", "workshop"
+   - Filter by categories: Technology, Business, Entertainment, Sports, Art, Workshop
+   - Try combined search: text + category filter
+   - Test the Reset button to clear all filters
+   - Notice how URL updates with search parameters
+3. **Create Event** - Use the "Create Event" button to add a new event
+4. **My Events** - View your created events and statistics
+5. **Event Details** - Click any event to see details and RSVP
+6. **Edit/Delete** - From "My Events", edit or delete your events
 
 ## 📝 Environment Configuration
 

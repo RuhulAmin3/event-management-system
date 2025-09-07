@@ -15,6 +15,7 @@ export async function GET(req: NextRequest) {
       });
     }
 
+    console.log("search", `${process.env.JSON_SERVER_URL}${search}`);
     // Fetch data from external/backend source
     const res = await fetch(`${process.env.JSON_SERVER_URL}${search}`, {
       method: "GET",
